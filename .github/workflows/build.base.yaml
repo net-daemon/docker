@@ -39,4 +39,4 @@ jobs:
             --file ./base/Dockerfile . \
             --compress \
             --tag "netdaemon/netdaemon_base" \
-            --tag "ghcr.io/net-daemon/netdaemon_base:
+            --tag "ghcr.io/net-daemon/netdaemon_base"
