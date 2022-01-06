@@ -1,6 +1,6 @@
 #!/bin/bash
 # https://github.com/just-containers/s6-overlay
-S6_VERSION="v2.1.0.2"
+S6_VERSION="v2.2.0.3"
 ARCH=$(uname -m)
 
 if [ $ARCH == "armv7l" ]; then

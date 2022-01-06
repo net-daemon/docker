@@ -19,3 +19,5 @@ COPY ./base/s6.sh /s6.sh
 
 RUN chmod 700 /s6.sh
 RUN /s6.sh
+
+ENTRYPOINT ["/init"]

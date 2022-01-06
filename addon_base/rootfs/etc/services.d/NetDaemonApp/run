@@ -1,0 +1,65 @@
+#!/usr/bin/with-contenv bash
+echo "Starting NetDaemon Runner"
+
+declare daemondir="/daemon"
+declare is_custom_app_source=false
+declare is_project=false
+
+if [[ "${NETDAEMON__APPSOURCE}" == *.csproj ]] || [[ "${NETDAEMON__APPSOURCE}" == *.dll ]]; 
+then 
+    is_custom_app_source=true
+
+    if [ -z "${NETDAEMON__WARN_IF_CUSTOM_APP_SOURCE}" ] || [[ "${NETDAEMON__WARN_IF_CUSTOM_APP_SOURCE}" != true ]];
+    then
+        echo -e "\\033[33mWarning: you are using a custom daemon, this can potentially be unsecure. Please review your security." \
+        "To remove this warning, set NETDAEMON__WARN_IF_CUSTOM_APP_SOURCE=false \033[0m" >&2
+    fi 
+
+    # make path relative to data folder (/config/netdaemon if addon) 
+    # if the path is a relative path
+    if [[ "${NETDAEMON__APPSOURCE}" != /* ]];
+    then
+        export NETDAEMON__APPSOURCE="/config/netdaemon/${NETDAEMON__APPSOURCE}"
+    fi 
+
+    # The provided application source is ether a project or pre-compiled .Net application
+    if [ ! -f ${NETDAEMON__APPSOURCE} ] && [ ! -d ${NETDAEMON__APPSOURCE} ];
+    then
+        
+        echo -e "\\033[31mThe executable or project ${NETDAEMON__APPSOURCE} cannot be found. Please check the settings.\\033[0m" >&2
+        exit 1
+    fi
+
+    if [[ "${NETDAEMON__APPSOURCE}" == *.csproj ]];
+    then
+        is_project=true
+    fi
+fi
+
+if  [[ $is_custom_app_source == false ]]; then
+    echo -e "\\033[32mRunning standard NetDaemon at ${daemondir}...\\033[0m" >&2
+    
+    cd "${daemondir}"
+    exec dotnet Service.dll
+else 
+    # We allow for custom projects and solutions to be used
+    echo -e "\\033[32mRun the custom daemon at ${NETDAEMON__APPSOURCE}..\\033[0m" >&2
+    cd "$(dirname "${NETDAEMON__APPSOURCE}")" || echo -e "\\033[31mCould not change directory to run project\\033[0m" >&2
+
+    if [[ "${PWD}" != "$(dirname "${NETDAEMON__APPSOURCE}")" ]]; then
+        echo -e "\\033[31mCould not change directory to run custom project\\033[0m" >&2
+        exit 1
+    fi
+
+    if [[ $is_project == true ]];
+    then
+        echo -e "\\033[32mPlease wait while restore, compile and run custom project...\\033[0m" >&2
+        project="$(basename "${NETDAEMON__APPSOURCE}")"
+        exec dotnet run -v m -c Release -p $project
+    else
+        echo -e "\\033[32m Running custom pre-compiled daemon...\\033[0m" >&2
+        runme="$(basename "${NETDAEMON__APPSOURCE}")" 
+        exec dotnet $runme
+    fi
+fi
+
