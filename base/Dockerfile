@@ -8,12 +8,15 @@ ENV \
     HOMEASSISTANT__HOST=localhost \
     HOMEASSISTANT__PORT=8123 \
     HOMEASSISTANT__TOKEN=NOT_SET \
-    NETDAEMON__ADMIN=true \
+    NETDAEMON__ADMIN=false \
     ASPNETCORE_URLS=http://+:5000 \
     # For V2
     NETDAEMON__APPSOURCE=/data \            
     # For V3
-    NETDAEMON__APPLICATION_FOLDER=/data 
+    APPLICATION_CONFIGURATION_FOLDER=/data 
+
+# This one is used by the container to start custom assembly
+#NETDAEMON__APPLICATION_ASSEMBLY="" 
 
 # Install S6 and the Admin site
 RUN apt update && apt install -y \
