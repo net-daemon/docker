@@ -15,6 +15,13 @@ ENV \
     # For V3
     NETDAEMON__APPLICATION_FOLDER=/data 
 
+# Install S6 and the Admin site
+RUN apt update && apt install -y \
+    nodejs \
+    yarn \
+    jq \
+    make
+
 COPY ./base/s6.sh /s6.sh
 
 RUN chmod 700 /s6.sh
