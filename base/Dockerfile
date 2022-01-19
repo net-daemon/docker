@@ -13,7 +13,7 @@ ENV \
     # For V2
     NETDAEMON__APPSOURCE=/data \            
     # For V3
-    APPLICATION_CONFIGURATION_FOLDER=/data 
+    NETDAEMON__APPLICATION_CONFIGURATION_FOLDER=/data 
 
 # This one is used by the container to start custom assembly
 #NETDAEMON__APPLICATION_ASSEMBLY="" 
