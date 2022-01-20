@@ -4,16 +4,7 @@ ENV \
     S6_KEEP_ENV=1 \
     DOTNET_NOLOGO=true \
     DOTNET_CLI_TELEMETRY_OPTOUT=true \
-    HASSCLIENT_MSGLOGLEVEL=Default \
-    HOMEASSISTANT__HOST=localhost \
-    HOMEASSISTANT__PORT=8123 \
-    HOMEASSISTANT__TOKEN=NOT_SET \
-    NETDAEMON__ADMIN=false \
-    ASPNETCORE_URLS=http://+:5000 \
-    # For V2
-    NETDAEMON__APPSOURCE=/data \            
-    # For V3
-    NETDAEMON__APPLICATION_CONFIGURATION_FOLDER=/data 
+    ASPNETCORE_URLS=http://+:5000
 
 # This one is used by the container to start custom assembly
 #NETDAEMON__APPLICATION_ASSEMBLY="" 
