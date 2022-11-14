@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0
+
+ENV \
+    S6_KEEP_ENV=1 \
+    DOTNET_NOLOGO=true \
+    DOTNET_CLI_TELEMETRY_OPTOUT=true \
+    ASPNETCORE_URLS=http://+:5000
+
+# This one is used by the container to start custom assembly
+#NETDAEMON__APPLICATION_ASSEMBLY="" 
+
+# Install S6 and the Admin site
+RUN apt update && apt install -y \
+    nodejs \
+    yarn \
+    jq \
+    make
+
+COPY ./base/s6.sh /s6.sh
+
+RUN chmod 700 /s6.sh
+RUN /s6.sh
+
+ENTRYPOINT ["/init"]
