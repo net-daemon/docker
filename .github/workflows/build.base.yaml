@@ -36,7 +36,7 @@ jobs:
             --platform linux/arm,linux/arm64,linux/amd64 \
             --output "type=image,push=true" \
             --no-cache \
-            --file ./base/Dockerfile . \
+            --file ./base/Dockerfile8 . \
             --compress \
-            --tag "netdaemon/netdaemon_base" \
-            --tag "ghcr.io/net-daemon/netdaemon_base"
+            --tag "netdaemon/netdaemon_base:8" \
+            --tag "ghcr.io/net-daemon/netdaemon_base:8"

@@ -38,5 +38,5 @@ jobs:
             --no-cache \
             --file ./base/Dockerfile7 . \
             --compress \
-            --tag "netdaemon/netdaemon_base7" \
-            --tag "ghcr.io/net-daemon/netdaemon_base7"
+            --tag "netdaemon/netdaemon_base:7" \
+            --tag "ghcr.io/net-daemon/netdaemon_base:7"

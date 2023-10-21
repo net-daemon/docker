@@ -1,11 +1,11 @@
 #### Publish tags to docker hub
-name: 📦 Deploy to netdaemon_addonbase_7
+name: 📦 Deploy to netdaemon_addonbase:7
 on:
   workflow_dispatch:
 
 jobs:
   deploy:
-    name: 📦 Deploy to netdaemon_base_7
+    name: 📦 Deploy to netdaemon_base:7
     runs-on: ubuntu-latest
     environment: CI - release environment
     steps:
@@ -38,5 +38,5 @@ jobs:
             --no-cache \
             --file ./addon_base/Dockerfile7 . \
             --compress \
-            --tag "netdaemon/netdaemon_addonbase7" \
-            --tag "ghcr.io/net-daemon/netdaemon_addonbase7"
+            --tag "netdaemon/netdaemon_addonbase:7" \
+            --tag "ghcr.io/net-daemon/netdaemon_addonbase:7"
