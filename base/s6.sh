@@ -6,10 +6,10 @@ tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
 
 ARCH=$(uname -m)
 
-if [ $ARCH == "armv7" ]; then
-    wget -nv -O /tmp/s6.tar.gz "https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-armhf.tar.xz"
+if [ $ARCH == "armv7l" ]; then
+    wget -nv -O /tmp/s6.tar.xz "https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-armhf.tar.xz"
 elif [ $ARCH == "aarch64" ]; then
-    wget -nv -O /tmp/s6.tar.gz "https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-aarch64.tar.xz"
+    wget -nv -O /tmp/s6.tar.xz "https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-aarch64.tar.xz"
 elif [ $ARCH == "x86_64" ]; then
     wget -nv -O /tmp/s6.tar.xz "https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-x86_64.tar.xz"
 else
