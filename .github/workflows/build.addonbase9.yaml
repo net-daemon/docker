@@ -1,5 +1,5 @@
 #### Publish tags to docker hub
-name: 📦 Deploy to netdaemon_addonbase
+name: 📦 Deploy to netdaemon_addonbase .NET 9
 on:
   workflow_dispatch:
 

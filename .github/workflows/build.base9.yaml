@@ -1,11 +1,11 @@
 #### Publish tags to docker hub
-name: 📦 Deploy to netdaemon_base
+name: 📦 Deploy to netdaemon_base .NET 9
 on:
   workflow_dispatch:
 
 jobs:
   deploy:
-    name: 📦 Deploy to netdaemon_base
+    name: 📦 Deploy to netdaemon_base .NET 9
     runs-on: ubuntu-latest
     environment: CI - release environment
     steps:
